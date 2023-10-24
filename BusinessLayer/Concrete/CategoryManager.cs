@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Abstract;
+using DataAccessLayer.Abstract;
 using DataAccessLayer.EntityFramework;
 using DataAccessLayer.Repositories;
 using EntityLayer.Concrete;
@@ -12,18 +13,25 @@ namespace BusinessLayer.Concrete
 {
 	public class CategoryManager : ICategoryService
 	{
-		EFCategoryRepo efCategoryRepo;
+		//Eski Constructor
+		//
+		//EFCategoryRepo efCategoryRepo;
+		//public CategoryManager()
+		//{
+		//	efCategoryRepo = new EFCategoryRepo();
+		//}
 
-		public CategoryManager()
+		ICategoryDAL _categoryDAL;
+		public CategoryManager(ICategoryDAL categoryDAL)
 		{
-			efCategoryRepo = new EFCategoryRepo();
+			_categoryDAL = categoryDAL;
 		}
 
 		public void create(Category category)
 		{
 			if (category.Name != "")
 			{
-				efCategoryRepo.create(category);
+				_categoryDAL.create(category);
 			}
 			else
 			{
@@ -33,22 +41,22 @@ namespace BusinessLayer.Concrete
 
 		public void delete(Category category)
 		{
-			efCategoryRepo.delete(category);
+			_categoryDAL.delete(category);
 		}
 
 		public List<Category> read()
 		{
-			return efCategoryRepo.read();
+			return _categoryDAL.read();
 		}
 
 		public Category readById(int id)
 		{
-			return efCategoryRepo.readById(id);
+			return _categoryDAL.readById(id);
 		}
 
 		public void update(Category category)
 		{
-			efCategoryRepo.update(category);
+			_categoryDAL.update(category);
 		}
 	}
 }

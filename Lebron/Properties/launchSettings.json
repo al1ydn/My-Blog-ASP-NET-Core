@@ -13,6 +13,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "applicationUrl": "https://localhost:7211;http://localhost:5274",
+      "launchUrl": "Blog", // Ben ekledim.
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

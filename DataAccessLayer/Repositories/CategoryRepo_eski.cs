@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-	public class CategoryRepo_eski : ICategoryDAL
+	public class CategoryRepo_eski : ICategoryDAL_eski
 	{
 		Context context = new Context();
 		public void create(Category category)

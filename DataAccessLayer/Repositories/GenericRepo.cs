@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,6 +28,11 @@ namespace DataAccessLayer.Repositories
 		public T readById(int id)
 		{
 			return context.Set<T>().Find(id);
+		}
+
+		public List<T> readByFilter(Expression<Func<T, bool>> filter)
+		{
+			return context.Set<T>().Where(filter).ToList();
 		}
 
 		public void update(T t)
