@@ -8,13 +8,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-	public interface ISubscriberService
+	public interface ISubscriberService : IGenericService<Subscriber>
 	{
-		void create(Subscriber subscriber);
-		List<Subscriber> read();
-		Subscriber readById(int id);
-		List<Subscriber> readByFilter(int id);
-		void update(Subscriber subscriber);
-		void delete(Subscriber subscriber);
 	}
 }

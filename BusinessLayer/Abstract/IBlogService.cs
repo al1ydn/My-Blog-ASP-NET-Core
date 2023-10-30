@@ -8,17 +8,14 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Abstract
 {
-	public interface IBlogService
+	public interface IBlogService : IGenericService<Blog>
 	{
-		void create(Blog blog);
-		List<Blog> read();
-		Blog readById(int id);
 		//List<Blog> readByFilter(Expression<Func<Blog, bool>> filer);
 		List<Blog> readByFilter(int id);
 		List<Blog> readByWriterFilter(int id);
-		void update(Blog blog);
-		void delete(Blog blog);
+		List<Blog> readByLatestFilter(int id);
 
 		List<Blog> readIncludeCategory();
+		List<Blog> readIncludeCategoryByWriterFilter(int id);
 	}
 }

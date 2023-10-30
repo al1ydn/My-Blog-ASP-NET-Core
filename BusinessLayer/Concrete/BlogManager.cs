@@ -25,11 +25,6 @@ namespace BusinessLayer.Concrete
 			_blogDAL.create(blog);
 		}
 
-		public void delete(Blog blog)
-		{
-			_blogDAL.delete(blog);
-		}
-
 		public List<Blog> read()
 		{
 			return _blogDAL.read();
@@ -40,9 +35,26 @@ namespace BusinessLayer.Concrete
 			return _blogDAL.readById(id);
 		}
 
+		public void update(Blog t)
+		{
+			_blogDAL.update(t);
+		}
+
+		public void delete(Blog t)
+		{
+			// _blogDAL.delete(t);
+		}
+
 		public List<Blog> readByFilter(int id)
 		{
 			return _blogDAL.readByFilter(x => x.Id == id);
+		}
+
+		public List<Blog> readByLatestFilter(int count)
+		{
+			List<Blog> list = _blogDAL.read().TakeLast(count).ToList();
+			list.Reverse();
+			return list;
 		}
 
 		public List<Blog> readByWriterFilter(int id)
@@ -55,9 +67,9 @@ namespace BusinessLayer.Concrete
 			return _blogDAL.readIncludeCategory();
 		}
 
-		public void update(Blog blog)
+		public List<Blog> readIncludeCategoryByWriterFilter(int id)
 		{
-			_blogDAL.update(blog);
+			return _blogDAL.readIncludeCategoryByWriterFilter(id);
 		}
 	}
 }

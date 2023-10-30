@@ -51,7 +51,7 @@
 						<p>@item.Content</p>
 					</div>
 
-					@await Component.InvokeAsync("commentReadByFilter", new { id = ViewBag.blogId })
+					@await Component.InvokeAsync("commentReadByBlogFilter", new { id = ViewBag.blogId })
 
 					@await Html.PartialAsync("~/Views/Comment/Create.cshtml")
 

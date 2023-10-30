@@ -22,10 +22,10 @@ namespace BusinessLayer.Concrete
 
 		public void create(Subscriber subscriber)
 		{
-			throw new NotImplementedException();
+			_subscriberDAL.create(subscriber);
 		}
 
-		public void delete(Subscriber subscriber)
+		public void delete(Subscriber t)
 		{
 			throw new NotImplementedException();
 		}
@@ -35,17 +35,12 @@ namespace BusinessLayer.Concrete
 			throw new NotImplementedException();
 		}
 
-		public List<Subscriber> readByFilter(int id)
-		{
-			throw new NotImplementedException();
-		}
-
 		public Subscriber readById(int id)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void update(Subscriber subscriber)
+		public void update(Subscriber t)
 		{
 			throw new NotImplementedException();
 		}

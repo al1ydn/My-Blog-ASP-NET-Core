@@ -25,19 +25,14 @@ namespace BusinessLayer.Concrete
 			_commentDAL.create(comment);
 		}
 
-		public void delete(Comment comment)
+		public void delete(Comment t)
 		{
 			throw new NotImplementedException();
 		}
 
 		public List<Comment> read()
 		{
-			return _commentDAL.read();
-		}
-
-		public List<Comment> readByFilter(int id)
-		{
-			return _commentDAL.readByFilter(x => x.BlogId == id);
+			throw new NotImplementedException();
 		}
 
 		public Comment readById(int id)
@@ -45,14 +40,14 @@ namespace BusinessLayer.Concrete
 			throw new NotImplementedException();
 		}
 
-		public List<Comment> readIncludeBlog()
+		public void update(Comment t)
 		{
 			throw new NotImplementedException();
 		}
 
-		public void update(Comment comment)
+		public List<Comment> readByBlogFilter(int id)
 		{
-			throw new NotImplementedException();
+			return _commentDAL.readByFilter(x => x.BlogId == id);
 		}
 	}
 }

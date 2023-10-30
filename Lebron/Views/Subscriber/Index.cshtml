@@ -1,19 +1,11 @@
 ﻿@* @model EntityLayer.Concrete.Subscriber *@
 
 <div class="tech-btm">
-	<img src="/CoreBlogTema/web/images/banner1.jpg" class="img-fluid" alt="">
-</div>
-<div class="tech-btm">
 	<h4>Bültenimize abone olun</h4>
 	<p>Resim, heykel, mimari, dans, tiyatro...</p>
 
-	<form action="#" method="post">
-	<input type="email" placeholder="Mail" required="">
-	<input type="submit" value="ABONE OL">
+	<form action="Subscriber/Index" method="post">
+		<input type="email" name="Mail" placeholder="Mail" required="">
+		<input type="submit" value="ABONE OL">
 	</form>
-
-	@* @using (Html.BeginForm("Index", "Subscriber", FormMethod.Post))
-	{
-		Html.TextBoxFor(x => x.Mail);
-	} *@
 </div>

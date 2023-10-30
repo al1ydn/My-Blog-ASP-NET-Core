@@ -10,7 +10,7 @@ namespace Lebron.Controllers
 
 		public IActionResult Index()
 		{
-			return View(categoryManager.read());
+			return View();
 		}
 	}
 }
