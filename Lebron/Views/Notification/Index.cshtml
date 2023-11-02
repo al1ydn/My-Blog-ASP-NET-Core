@@ -1,0 +1,41 @@
+﻿@model List<EntityLayer.Concrete.Notification>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="row">
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Bildirimler</h4>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Detail</th>
+								<th>Date</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										<i class="mdi mdi-calendar" style="font-size: 24px; color:turquoise;"></i>
+									</td>
+									<td>
+										@item.Detail
+									</td>
+									<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Lebron.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Lebron.Controllers
@@ -42,8 +44,22 @@ namespace Lebron.Controllers
 			return View();
 		}
 		[HttpPost]
-		public IActionResult Create(Blog blog)
+		public IActionResult Create(BlogModel blogmodel)
 		{
+			var extension = Path.GetExtension(blogmodel.Image.FileName);
+			var filename = Guid.NewGuid() + extension;
+			var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/blog/image", filename);
+			var stream = new FileStream(path, FileMode.Create);
+			blogmodel.Image.CopyTo(stream);
+
+			Blog blog = new Blog();
+			
+			blog.Image = filename;
+			blog.Title = blogmodel.Title;
+			blog.CategoryId = blogmodel.CategoryId;
+			blog.Thumbnail = blogmodel.Thumbnail;
+			blog.Content = blogmodel.Content;
+
 			blog.Status = true;
 			blog.Date = DateTime.Now;
 
@@ -80,8 +96,26 @@ namespace Lebron.Controllers
 			return View(blog);
 		}
 		[HttpPost]
-        public IActionResult Update(Blog blog)
+        public IActionResult Update(BlogModel blogmodel)
 		{
+			var extension = Path.GetExtension(blogmodel.Image.FileName);
+			var filename = Guid.NewGuid() + extension;
+			var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images/blog/image", filename);
+			var stream = new FileStream(path, FileMode.Create);
+			blogmodel.Image.CopyTo(stream);
+
+			Blog blog = new Blog();
+			blog.Image = filename;
+			blog.Title = blogmodel.Title;
+			blog.CategoryId = blogmodel.CategoryId;
+			blog.Thumbnail = blogmodel.Thumbnail;
+			blog.Content = blogmodel.Content;
+
+			blog.Id = blogmodel.Id;
+			blog.Date = blogmodel.Date;
+			blog.Status = blogmodel.Status;
+			blog.WriterId = blogmodel.WriterId;
+
 			blogManager.update(blog);
 
             return RedirectToAction("readIncludeCategoryByWriterFilter", "Blog");

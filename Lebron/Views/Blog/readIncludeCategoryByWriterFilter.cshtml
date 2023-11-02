@@ -10,36 +10,48 @@
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.8.0/dist/sweetalert2.all.min.js"></script>
 
-<table class="table table-light table-striped">
-	<thead>
-		<tr>
-			<th>Başlık</th>
-			<th>Kategori</th>
-			<th>Tarih</th>
-			<th></th>
-			<th></th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var item in Model)
-		{
-			<tr>
-				<td><a href="/Blog/Detail/@item.Id" style="text-decoration:none; color:black;">@item.Title</a></td>
-				<td>@item.Category.Name</td>
-				<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
-				<td>
-					<a href="/Blog/Update/@item.Id" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Düzenle</a>
-				</td>
-				<td>
-					<a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a>
-					<a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a>
-				</td>
-			</tr>
-		}
-	</tbody>
-</table>
+<div class="row">
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Bloglarım</h4>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Başlık</th>
+								<th>Kategori</th>
+								<th>Tarih</th>
+								<th></th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>
+										<a href="/Blog/Detail/@item.Id" style="text-decoration:none; color:black;">@item.Title</a>
+									</td>
+									<td>@item.Category.Name</td>
+									<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
+									<td>
+										<a href="/Blog/Update/@item.Id" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Düzenle</a>
+									</td>
+									<td>
+										<a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a>
+										<a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <a href="/Blog/Create" class="btn btn-success btn-sm" style="width: 160px;">Yeni</a>
-
 
 <script>
 	$('.confirm_delete').click(function () {

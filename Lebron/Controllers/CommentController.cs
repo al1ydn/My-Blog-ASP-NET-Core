@@ -23,6 +23,7 @@ namespace Lebron.Controllers
 		public PartialViewResult Create(Comment comment)
 		{
 			comment.Date = DateTime.Now;
+			comment.Status = true;
 			comment.BlogId = 2;
 
 			commentManager.create(comment);

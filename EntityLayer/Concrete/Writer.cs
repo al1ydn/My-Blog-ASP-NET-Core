@@ -18,5 +18,8 @@ namespace EntityLayer.Concrete
         public bool? Status { get; set; }
 
         public List<Blog> Blogs { get; set; }
+
+        public virtual ICollection<Message2> SendMessage2s { get; set; }
+        public virtual ICollection<Message2> ReceivedMessage2s { get; set; }
     }
 }

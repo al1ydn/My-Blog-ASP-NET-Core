@@ -15,6 +15,7 @@ namespace EntityLayer.Concrete
         public string? Mail { get; set; }
         public DateTime? Date { get; set; }
         public bool? Status { get; set; }
+        public int? Rating { get; set; }
 
         public int BlogId { get; set; }
         public Blog Blog { get; set; }

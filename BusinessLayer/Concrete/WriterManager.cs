@@ -37,12 +37,12 @@ namespace BusinessLayer.Concrete
 
 		public Writer readById(int id)
 		{
-			throw new NotImplementedException();
+			return _writerDAL.readById(id);
 		}
 
 		public void update(Writer writer)
 		{
-			throw new NotImplementedException();
+			_writerDAL.update(writer);
 		}
 	}
 }

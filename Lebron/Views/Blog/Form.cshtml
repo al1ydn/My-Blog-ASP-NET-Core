@@ -25,7 +25,8 @@
 	<div class="row align-items-center">
 		<div class="col-5">
 			<label class="form-label">Başlık Resmi</label>
-			@Html.TextBoxFor(x=>x.Image, new {@class = "form-control"})
+			@Html.TextBoxFor(x=>x.Image, new {@class = "form-control", type = "file"})
+			@* <input type="file" name="Image" class="form-control" /> *@
 		</div>
 		<div class="col-5">
 			<label class="form-label">Küçük Resim</label>

@@ -1,0 +1,12 @@
+﻿@model List<EntityLayer.Concrete.Assess>
+
+@{
+	int? sum = 0;
+
+	foreach (var item in Model)
+	{
+		sum += item.Score;
+	}
+}
+
+@sum

@@ -1,0 +1,72 @@
+﻿@model EntityLayer.Concrete.Writer
+
+@{
+    ViewData["Title"] = "EditProfile";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+@using (Html.BeginForm("EditProfile", "Writer", FormMethod.Post))
+{
+	<div class="mb-3">
+		<label class="form-label">İsim</label>
+		<div class="row align-items-center">
+			<div class="col-4">
+				@Html.TextBoxFor(x=>x.Name, new {@class = "form-control"})
+			</div>
+			<div class="col-4">
+				<span class="form-text">
+					Must be 8-20 characters long.
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Mail adresi</label>
+		<div class="row align-items-center">
+			<div class="col-4">
+				@Html.TextBoxFor(x=>x.Mail, new {@class = "form-control"})
+			</div>
+			<div class="col-4">
+				<span class="form-text">
+					Must be 8-20 characters long.
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="mb-3">
+		<div class="row align-items-center">
+			<div class="col-4">
+				<label class="form-label">Parola</label>
+				@Html.PasswordFor(x=>x.Password, new {@class = "form-control"})
+			</div>
+			<div class="col-4">
+				<label class="form-label">Parola yeniden</label>
+				@Html.PasswordFor(x=>x.PasswordConfirm, new {@class = "form-control"})
+			</div>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Resim</label>
+		<div class="row align-items-center ">
+			<div class="col-8">
+				@Html.TextBoxFor(x=>x.Image, new {@class = "form-control"})
+			</div>
+		</div>
+	</div>
+	<div class="mb-3">
+		<label class="form-label">Hakkında</label>
+		<div class="row align-items-center ">
+			<div class="col-8">
+				@Html.TextAreaFor(x=>x.About, new {@class = "form-control", @rows = "4"})
+			</div>
+		</div>
+	</div>
+
+	@Html.HiddenFor(x => x.Id)
+
+	<div class="mb-3">
+		<button type="submit" class="btn btn-success btn-sm" style="width: 160px;">Düzenle</button>
+	</div>
+}
