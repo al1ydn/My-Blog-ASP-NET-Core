@@ -10,5 +10,6 @@ namespace BusinessLayer.Abstract
 	public interface IMessage2Service : IGenericService<Message2>
 	{
 		List<Message2> readByReceiverFilter(int receiverId);
+		public List<Message2> readIncludeWriterByMessage2ReceiverFilter(int receiverId);
 	}
 }

@@ -1,0 +1,32 @@
+﻿@model EntityLayer.Concrete.Message2
+
+@{
+	ViewData["Title"] = "Detail";
+	Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<div class="row">
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">@Html.DisplayFor(x => x.Subject)</h4>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Mesaj</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>
+									@Html.DisplayFor(x => x.Detail)
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

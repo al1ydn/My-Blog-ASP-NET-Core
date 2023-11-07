@@ -10,7 +10,12 @@ namespace Lebron.Controllers
 
 		public IActionResult Index()
 		{
-			return View(message2Manager.read());
+			return View(message2Manager.readIncludeWriterByMessage2ReceiverFilter(7));
+		}
+
+		public IActionResult Detail(int id)
+		{
+			return View(message2Manager.readById(id));
 		}
 	}
 }

@@ -1,0 +1,85 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+@model X.PagedList.IPagedList<EntityLayer.Concrete.Blog>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox ">
+				<div class="ibox-title">
+					<h5>Bloglar</h5>
+				</div>
+				<div class="ibox-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>Tarih</th>
+								<th>Başlık</th>
+								<th>Kategori</th>
+								<th>Durum</th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
+									<th>
+										<a asp-route-id="@item.Id" asp-action="Detail" asp-controller="Blog" asp-area="" style="color:inherit">
+											@item.Title
+										</a>
+									</th>
+									<td>
+										@{
+											var labelColor = "";
+											switch (item.CategoryId)
+											{
+												case 1: labelColor = "#FCCDE5"; break;
+												case 2: labelColor = "#BC80BD"; break;
+												case 3: labelColor = "#FDB462"; break;
+												case 4: labelColor = "#B3DE69"; break;
+												case 5: labelColor = "#FB8072"; break;
+												case 6: labelColor = "#BEBADA"; break;
+												case 7: labelColor = "#8DD3C7"; break;
+												case 8: labelColor = "#FFED6F"; break;
+												default: labelColor = "#D9D9D9"; break;
+											}
+										}
+
+										<label class="label" style="background-color: @labelColor;">
+											@item.Category.Name
+										</label>
+									</td>
+									<td>
+										@if (item.Status == true)
+										{
+											<span>Aktif</span>
+										}
+										@if (item.Status == false)
+										{
+											<span>Pasif</span>
+										}
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+					@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new	{page}))
+
+					<a asp-action="#" class="btn btn-primary" type="button" style="width: 150px;">
+						<i class="fa fa-plus"></i>&nbsp;Ekle
+					</a>
+					<a asp-action="ExportToExcel" class="btn btn-primary btn-outline" type="button" style="width: 100px;">
+						<i class="fa fa-arrow-down"></i>&nbsp;Çıkart
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

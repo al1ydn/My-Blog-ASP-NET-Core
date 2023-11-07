@@ -40,7 +40,7 @@
 									</td>
 									<td>
 										<a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a>
-										<a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a>
+										@* <a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a> *@
 									</td>
 								</tr>
 							}
@@ -53,8 +53,10 @@
 </div>
 <a href="/Blog/Create" class="btn btn-success btn-sm" style="width: 160px;">Yeni</a>
 
-<script>
-	$('.confirm_delete').click(function () {
+@* <script>
+	$('.confirm_delete').click(function (e) {
+		e.preventDefault();
+
 		Swal.fire({
 			title: 'Emin misin?',
 			text: "Silme işlemini geri alamayacaksın!",
@@ -77,4 +79,32 @@
 			}
 		})
 	})
-</script>
+</script> *@
+
+@* <script>
+	function onayla(e) {
+		e.preventDefault();
+		Swal.fire({
+			title: 'Emin misin?',
+			text: "Silme işlemini geri alamayacaksın!",
+			icon: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#3085d6',
+			cancelButtonColor: '#d33',
+			confirmButtonText: 'Evet, sil!',
+			cancelButtonText: 'Vazgeç'
+		}).then((result) => {
+			if (result.isConfirmed) {
+				Swal.fire(
+					'Silindi!',
+					'Seçtiğin blog silindi.',
+					'success'
+				),
+				return 0
+				// var linkim = document.getElementById("hidden-delete-link").href;
+				// console.log('Query: ' + `${linkim}`);
+				// window.location.href = `${linkim}`;
+			}
+		});
+	}
+</script> *@

@@ -37,12 +37,17 @@ namespace BusinessLayer.Concrete
 
 		public Message2 readById(int id)
 		{
-			throw new NotImplementedException();
+			return _message2DAL.readById(id);
 		}
 
 		public List<Message2> readByReceiverFilter(int receiverId)
 		{
 			return _message2DAL.readByFilter(x => x.ReceiverId == receiverId);
+		}
+
+		public List<Message2> readIncludeWriterByMessage2ReceiverFilter(int receiverId)
+		{
+			return _message2DAL.readIncludeWriterByMessage2ReceiverFilter(receiverId);
 		}
 
 		public void update(Message2 t)

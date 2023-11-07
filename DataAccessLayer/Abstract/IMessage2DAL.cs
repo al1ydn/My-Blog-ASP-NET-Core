@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
 	public interface IMessage2DAL : IGenericDAL<Message2>
 	{
+		public List<Message2> readIncludeWriterByMessage2ReceiverFilter(int receiverId);
 	}
 }
