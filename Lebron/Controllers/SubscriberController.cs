@@ -1,27 +1,25 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Lebron.Controllers
 {
+	[AllowAnonymous]
 	public class SubscriberController : Controller
 	{
-		SubscriberManager subscriberManager = new SubscriberManager(new EFSubscriberRepo());
-
-		[HttpGet]
-		public PartialViewResult Index()
+		public IActionResult Add(String mail)
 		{
-			return PartialView();
-		}
-		[HttpPost]
-		public PartialViewResult Index(Subscriber subscriber)
-		{
+			Subscriber subscriber = new Subscriber();
+			subscriber.Mail = mail;
 			subscriber.Status = true;
 
+			SubscriberManager subscriberManager = new SubscriberManager(new EFSubscriberRepo());
 			subscriberManager.create(subscriber);
 
-			return PartialView();
+			return NoContent();
 		}
 	}
 }

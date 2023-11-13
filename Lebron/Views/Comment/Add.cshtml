@@ -1,0 +1,52 @@
+﻿<div class="comment-top">
+	<h4>Yorum yap</h4>
+	<div class="comment-bottom">
+		<input id="inputCommentUsername" class="form-control" type="text" name="Username" placeholder="İsim">
+		<input id="inputCommentMail" class="form-control" type="text" name="Mail" placeholder="Mail adresi">
+		<input id="inputCommentTitle" class="form-control" type="text" name="Title" placeholder="Konu">
+		<textarea id="inputCommentContent" class="form-control" name="Content" placeholder="Mesaj..."></textarea>
+		<input id="inputCommentRating" class="form-control" type="number" name="Rating" placeholder="Puan">
+		<br />
+		<button id="buttonCommentAdd" type="submit" class="btn btn-primary submit">Gönder</button>
+		<div id="feedbackComment"></div>
+	</div>
+</div>
+
+<script src="/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+
+<script>
+	$("#buttonCommentAdd").click(function () {
+		let input = {
+			// Doğrulama yapmak mümkün mü?
+			Username: $("#inputCommentUsername").val(),
+			Mail: $("#inputCommentMail").val(),
+			Title: $("#inputCommentTitle").val(),
+			Content: $("#inputCommentContent").val(),
+			Rating: $("#inputCommentRating").val(),
+		};
+
+		$.ajax({
+			url: "/Comment/Add",
+			data: input,
+			success: function (jsonReturnedComment) {
+				$(`#inputCommentUsername,
+				#inputCommentMail,
+				#inputCommentTitle,
+				#inputCommentContent,
+				#inputCommentRating,
+				#buttonCommentAdd`)
+				.css({
+					pointerEvents: "none",
+					backgroundColor: "lightgray",
+				});
+
+				$("#buttonCommentAdd").text("Onay Bekliyor");
+
+				// let returnedComment = jQuery.parseJSON(jsonReturnedComment);
+				
+				// $("#feedbackComment").html(returnedComment.Username)
+
+			}
+		});
+	});
+</script>

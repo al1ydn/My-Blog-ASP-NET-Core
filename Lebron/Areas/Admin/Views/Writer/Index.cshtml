@@ -1,0 +1,139 @@
+﻿@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<div>
+	<a id="tetikle1">Yazar listesini getir</a>
+	<div id="writer1">
+		@* Buraya yazar listesi geliyor *@
+	</div>
+</div>
+
+<div>
+	<input type="text" id="writerId" />
+	<a id="tetikle2">Yazarı getir</a>
+	<div id="writer2">
+		@* Buraya yazar geliyor *@
+	</div>
+</div>
+
+<div>
+	<input type="text" id="name" />
+	<input type="number" id="id" />
+	<a id="add-writer">Ekle</a>
+	<div id="writer-list">
+		@* Buraya yazarlar geliyor *@
+	</div>
+</div>
+
+<div>
+	<input type="number" id="delete-id" />
+	<a id="delete-writer">Sil</a>
+</div>
+
+<div>
+	<input type="number" id="update-writer-id" />
+	<input type="text" id="update-writer-name" />
+	<a id="update-writer">Güncelle</a>
+</div>
+
+@section scripts{
+	<script>
+		$("#tetikle1").click(function () {
+			$.ajax({
+				contentType: "application/json",
+				dataType: "json",
+				type: "get",
+				url: "/Admin/Writer/CreateJsonWriters",
+				success: function (jsonWriters) {
+					let w = jQuery.parseJSON(jsonWriters)
+					// console.log(w);
+
+					let table = "<table>";
+					$.each(w, (index, value) => {
+						table += `<tr><td> ${value.Name} </td></tr>`
+					});
+					table += "</table>";
+
+					$("#writer1").html(table);
+				}
+			});
+		});
+
+		// $("#tetikle2").click(x => {
+		// 	let id = $("#writerId").val();
+		// 	console.log(id);
+		// });
+
+		$("#tetikle2").click(x => {
+			let inputId = $("#writerId").val();
+
+			$.ajax({
+				contentType: "application/json",
+				dataType: "json",
+				type: "get",
+				url: "/Admin/Writer/CreateJsonDetail",
+				data: { writerId: inputId },
+				success: function (jsonDetail) {
+					let w = jQuery.parseJSON(jsonDetail);
+
+					$("#writer2").html(w.Name);
+				}
+			});
+		});
+
+		$("#add-writer").click(function () {
+			let inputWriterModel = {
+				Id: $("#id").val(),
+				Name: $("#name").val(),
+			};
+
+			$.ajax({
+				// contentType: "application/json",
+				// dataType: "json",
+				// type: "get",
+				url: "/Admin/Writer/Add",
+				data: inputWriterModel,
+				success: function (jsonWriterModels) {
+					let writerModels = jQuery.parseJSON(jsonWriterModels);
+					console.log(writerModels);
+
+					let list = ""
+					$.each(writerModels, (index, value) => {
+						list += `<p>${value.Name}</p>`
+					});
+
+					$("#writer-list").html(list);
+				}
+			})
+		})
+
+		$("#delete-writer").click(function () {
+			let inputWriterId = $("#delete-id").val();
+
+			$.ajax({
+				// url: "/Admin/Writer/Delete" + inputWriterId,
+				url: "/Admin/Writer/Delete",
+				data: { writerId: inputWriterId },
+				// success: function (jsonWriterModels) {
+				// 	let writerModels = jsonWriterModels;
+
+				// 	console.log(writerModels);
+				// }
+			});
+		});
+
+		$("#update-writer").click(function () {
+			let inputWriterModel = {
+				Id: $("#update-writer-id").val(),
+				Name: $("#update-writer-name").val(),
+			};
+
+			$.ajax({
+				url: "/Admin/Writer/Update",
+				data: inputWriterModel,
+			});
+		})
+	</script>
+}

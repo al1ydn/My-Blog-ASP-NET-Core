@@ -7,9 +7,9 @@ using System.Security.Claims;
 
 namespace Lebron.Controllers
 {
+	[AllowAnonymous]
 	public class LoginController : Controller
 	{
-		[AllowAnonymous]
 		public IActionResult Index()
 		{
 			return View();

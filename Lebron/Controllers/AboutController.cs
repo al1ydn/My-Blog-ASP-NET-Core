@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Lebron.Controllers
 {
+	[AllowAnonymous]
 	public class AboutController : Controller
 	{
 		AboutManager aboutManager = new AboutManager(new EFAboutRepo());

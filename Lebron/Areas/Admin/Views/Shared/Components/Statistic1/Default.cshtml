@@ -19,8 +19,20 @@
 				<i class="fa fa-cloud fa-5x"></i>
 			</div>
 			<div class="col-8 text-right">
-				<span> Today degrees </span>
-				<h2 class="font-bold">26'C</h2>
+				<span>Gaziantep</span>
+				<h2 class="font-bold">
+					@{
+						int index = ViewBag.Weather.IndexOf(".");
+					}
+					@if (index >= 0)
+					{
+						<span>@ViewBag.Weather.Substring(0, index)'C</span>
+					}
+					else
+					{
+						<span>@ViewBag.Weather</span>
+					}
+				</h2>
 			</div>
 		</div>
 	</div>

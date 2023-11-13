@@ -20,9 +20,7 @@
 					<div class="blog-grid-top">
 						<div class="b-grid-top">
 							<div class="blog_info_left_grid">
-								<a href="single.html">
-									<img src="~/images/blog/image/@item.Image" class="img-fluid" alt="">
-								</a>
+								<img src="~/images/blog/image/@item.Image" class="img-fluid" alt="">
 							</div>
 							<div class="blog-info-middle">
 								<ul>
@@ -53,7 +51,7 @@
 
 					@await Component.InvokeAsync("commentReadByBlogFilter", new { id = ViewBag.blogId })
 
-					@await Html.PartialAsync("~/Views/Comment/Create.cshtml")
+					@await Html.PartialAsync("~/Views/Comment/Add.cshtml")
 
 				</div>
 			}
@@ -61,7 +59,7 @@
 			<!--right-->
 			<aside class="col-lg-4 agileits-w3ls-right-blog-con text-right">
 				<div class="right-blog-info text-left">
-					@await Html.PartialAsync("~/Views/Subscriber/Index.cshtml")
+					@await Html.PartialAsync("~/Views/Subscriber/Add.cshtml")
 					@await Component.InvokeAsync("categoryRead")
 					@await Component.InvokeAsync("blogReadByWriterFilter", new{id = 1})
 					<div class="single-gd my-5 tech-btm">

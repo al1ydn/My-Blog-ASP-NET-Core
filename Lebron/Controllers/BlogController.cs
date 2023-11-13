@@ -14,11 +14,13 @@ namespace Lebron.Controllers
 		BlogManager blogManager = new BlogManager(new EFBlogRepo());
 		CategoryManager categoryManager = new CategoryManager(new EFCategoryRepo());
 
+		[AllowAnonymous]
 		public IActionResult Index()
 		{
 			return View(blogManager.readIncludeCategory());
 		}
 
+		[AllowAnonymous]
 		public IActionResult Detail(int id)
 		{
 			ViewBag.blogId = id;

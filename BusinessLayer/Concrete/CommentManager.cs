@@ -32,7 +32,7 @@ namespace BusinessLayer.Concrete
 
 		public List<Comment> read()
 		{
-			throw new NotImplementedException();
+			return _commentDAL.read();
 		}
 
 		public Comment readById(int id)

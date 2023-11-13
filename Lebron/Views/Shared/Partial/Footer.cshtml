@@ -7,7 +7,7 @@
 					Kültür ve sanatın derinliklerine inmek ve yaratıcı dünyanın kapılarını aralamak için bir yolculuğa çıkmaya hazır mısınız? Biz buradayız, sizi görsel sanatlardan edebiyata, performans sanatlarından tarihe kadar birçok ilginç konuyla tanıştırmak için. Sanatın Dünyası Resim, heykel, sinema, müzik ve daha fazlası...
 				</p>
 				<div class="read">
-					<a href="About" class="btn btn-primary read-m">Devamını Oku</a>
+					<a asp-action="Index" asp-controller="About" class="btn btn-primary read-m">Devamını Oku</a>
 				</div>
 			</div>
 			<div class="col-lg-4 footer-grid-agileits-w3ls text-left">
@@ -18,7 +18,7 @@
 			<!-- subscribe -->
 			<div class="col-lg-4 subscribe-main footer-grid-agileits-w3ls text-left">
 				<!-- //subscribe -->
-				@await Html.PartialAsync("~/Views/Subscriber/Index.cshtml")
+				@* @await Html.PartialAsync("~/Views/Subscriber/Add.cshtml") *@
 			</div>
 		</div>
 		<!-- footer -->

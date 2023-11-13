@@ -4,11 +4,13 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Lebron.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Net;
 
 namespace Lebron.Controllers
 {
+	[AllowAnonymous]
 	public class RegisterController : Controller
 	{
 		WriterManager writerManager = new WriterManager(new EFWriterRepo());

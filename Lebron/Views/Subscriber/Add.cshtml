@@ -1,0 +1,40 @@
+﻿<div id="deneme2"></div>
+<div class="tech-btm" id="deneme" onload="sett()">
+	<h4>Bültenimize abone olun</h4>
+	<p>Resim, heykel, mimari, dans, tiyatro...</p>
+
+	<input id="inputSubscriberMail" type="email" placeholder="Mail" required="">
+	<input id="buttonSubscriberAdd" type="submit" value="ABONE OL">
+</div>
+
+<script src="/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.8.0/dist/sweetalert2.all.min.js"></script>
+
+<script>
+	$("#buttonSubscriberAdd").click(function () {
+		let inputSubscriberMail = $("#inputSubscriberMail").val();
+
+		$.ajax({
+			url: "/Subscriber/Add",
+			data: { mail: inputSubscriberMail },
+			success: function () {
+				// document.getElementById("inputSubscriberMail").style.backgroundColor = "lightgray";
+				$("#inputSubscriberMail, #buttonSubscriberAdd").css({
+					pointerEvents: "none",
+					backgroundColor: "lightgray"
+				});
+
+				// document.getElementById("buttonSubscriberAdd").value = "ABONE OLUNDU";
+				$("#buttonSubscriberAdd").value = "ABONE OLUNDU";
+
+				// Swal.fire({
+				// 	position: "top-end",
+				// 	icon: "success",
+				// 	title: "Abone olundu",
+				// 	showConfirmButton: false,
+				// 	timer: 1500
+				// });
+			}
+		});
+	});
+</script>

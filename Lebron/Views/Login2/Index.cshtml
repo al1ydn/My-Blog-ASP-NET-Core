@@ -1,0 +1,49 @@
+﻿@model Lebron.Models.Login2Model
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<body>
+	<!--Header-->
+	<!--//header-->
+	<!--/banner-->
+	<!--//banner-->
+	<!--/main-->
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">Giriş Yap</h3>
+			<div class="row inner-sec">
+				<div class="login p-5 bg-light mx-auto mw-100">
+					<form method="post">
+						<div class="form-group">
+							<label asp-for="UserName">Kullanıcı adı</label>
+							<input asp-for="UserName" class="form-control">
+							<span asp-validation-for="UserName" class="text-danger"></span>
+						</div>
+						<div class="form-group">
+							<label asp-for="Password">Parola</label>
+							<input asp-for="Password" type="password" class="form-control">
+							<span asp-validation-for="Password" class="text-danger"></span>
+						</div>
+						<div class="form-check mb-2">
+							<input type="checkbox" class="form-check-input">
+							<label class="form-check-label">Beni hatırla</label>
+						</div>
+						<button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
+						<p><a asp-action="Index" asp-controller="Register2">Bir hesabın yok mu?</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--//main-->
+	<!--footer-->
+	<!---->
+	<!-- js -->
+	<!-- //js -->
+	<!--/ start-smoth-scrolling -->
+	<!--// end-smoth-scrolling -->
+	<!-- //Custom-JavaScript-File-Links -->
+</body>

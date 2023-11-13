@@ -1,11 +1,26 @@
+using DataAccessLayer.Concrete;
+using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
+// Ben ekledim - logging
+using Microsoft.Extensions.Logging.Console;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Ben ekledim - logging
+//builder.Logging.ClearProviders();
+//builder.Logging.AddConsole();
+
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+//Identity için
+builder.Services.AddDbContext<Context>();
+builder.Services.AddIdentity<AppUser, AppRole>(x =>
+{
+	x.Password.RequireNonAlphanumeric = false;
+}).AddEntityFrameworkStores<Context>();
 
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
 
@@ -25,7 +40,23 @@ builder.Services.AddAuthentication(
 		x.LoginPath = "/Login/Index";
 	});
 
+// Ben ekledim - logging
+//builder.Logging.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);
+
 var app = builder.Build();
+
+// Ben ekledim - logging
+//app.Logger.LogInformation("Adding Routes");
+//app.MapGet("/", () => "Hello World!");
+//app.Logger.LogInformation("Starting the app");
+
+// Ben ekledim - logging
+//app.MapGet("/", () => "Hello World!");
+//app.MapGet("/Employee", async (ILogger<Program> logger, HttpResponse response) =>
+//{
+//	logger.LogInformation("Testing logging in Program.cs");
+//	await response.WriteAsync("Testing");
+//});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

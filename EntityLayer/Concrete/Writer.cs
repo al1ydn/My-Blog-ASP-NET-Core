@@ -16,6 +16,7 @@ namespace EntityLayer.Concrete
         public string? Password { get; set; }
         public string? PasswordConfirm { get; set; }
         public bool? Status { get; set; }
+        public string? UserName { get; set; }
 
         public List<Blog> Blogs { get; set; }
 

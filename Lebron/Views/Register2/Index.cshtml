@@ -1,0 +1,176 @@
+﻿@model Lebron.Models.Register2Model
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<head>
+	<script src="~/lib/jquery/dist/jquery.min.js"></script>
+	<script src="~/lib/jquery/dist/jquery.js"></script>
+
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+	<style>
+		.align-left {
+			text-align: left;
+		}
+
+		.swal-wide {
+			width: 850px !important;
+		}
+	</style>
+</head>
+
+<body>
+	<!--Header-->
+	<!--//header-->
+	<!--/banner-->
+	<!--//banner-->
+	<!--/main-->
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">Kaydol</h3>
+			<div class="inner-sec">
+				<div class="login p-5 bg-light mx-auto mw-100">
+					<form method="post">
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label asp-for="Name">İsim</label>
+								<input asp-for="Name" class="form-control" />
+								<span asp-validation-for="Name" class="text-danger"></span>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label asp-for="UserName">Kullanıcı Adı</label>
+								<input asp-for="UserName" class="form-control" />
+								<span asp-validation-for="UserName" class="text-danger"></span>
+							</div>
+						</div>
+						<div class="form-row">
+							<div class="col-md-6 mb-3">
+								<label asp-for="Password">Parola</label>
+								<input asp-for="Password" type="password" class="form-control" />
+								<span asp-validation-for="Password" class="text-danger"></span>
+							</div>
+						</div>
+
+						<button type="submit" class="btn btn-primary submit mb-4">Kaydol</button>
+						<p>
+							<a href="#" id="aggreement">Kullanıcı Sözleşmesi</a>
+						</p>
+						<p><a asp-action="Index" asp-controller="Login2">Bir hesabın mı var?</a></p>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--//main-->
+	<!--footer-->
+</body>
+
+<script>
+	$('#aggreement').click(function () {
+		Swal.fire({
+			title: '<strong>Kullanıcı Sözleşmesi</strong>',
+			icon: 'info',
+			html: `<div class="align-left">
+															<p><strong>Bu Kullanıcı Sözleşmesi, sunulan hizmetlere erişim ve kullanımınızla ilgilidir. Bu sözleşmeyi okuyun ve
+																	anladığınızdan emin olun. Platformu kullanarak, aşağıdaki şartları ve koşulları kabul ediyorsunuz.</strong>
+															</p>
+															<br />
+
+															<ol>
+																<li><strong>Kullanım Hakkı ve İzinler</strong>
+																	<ol>
+																		<li>Platform, kullanıcıya, kişisel, gayri ticari kullanım için sınırlı bir lisans verir. Platformun
+																			içeriğini
+																			kopyalamak, dağıtmak, değiştirmek veya yeniden üretmek kesinlikle yasaktır.</p>
+																		</li>
+																		<li>
+																			Platformun belirli özelliklerine veya içeriğine erişim, kayıt gerektirebilir. Kaydınızı
+																			oluştururken
+																			doğru ve güncel bilgiler vermelisiniz.
+																		</li>
+																	</ol>
+																</li>
+																<br />
+
+																<li><strong>Gizlilik Politikası</strong>
+																	<ol>
+																		<li>Platformun gizlilik politikasını inceleyin. Kullanıcı bilgilerinin nasıl toplandığını,
+																			kullanıldığını ve
+																			korunduğunu anlamak önemlidir.</li>
+																	</ol>
+																</li>
+																<br />
+
+																<li><strong>İçerik ve Kullanıcı Katkıları</strong>
+																	<ol>
+																		<li>Platform, kullanıcıların katkıda bulunmasına olanak tanır, ancak aşağıdaki türde içerikler
+																			kesinlikle
+																			yasaktır:
+																			<ol>
+																				<li>Hakaret, ırkçılık, cinsiyet ayrımcılığı veya şiddeti teşvik eden içerikler.</li>
+																				<li>Telif hakkı ihlali veya izinsiz içerik paylaşımı.</li>
+																			</ol>
+																		<li>Platform, kullanıcı katkılarını denetleme hakkını saklı tutar ve uygunsuz içerikleri kaldırabilir.
+																		</li>
+																	</ol>
+																</li>
+																<br />
+
+																<li><strong>Sorumluluk Sınırları</strong>
+																	<ol>
+																		<li>Platform, içerik hataları, kesintiler veya güvenlik ihlalleri nedeniyle ortaya çıkabilecek
+																			herhangi
+																			bir
+																			zarardan sorumlu değildir.</li>
+																		<li>Kullanıcı, Platformun kullanımı sırasında diğer kullanıcılarla uygun davranış kurallarına
+																			uymalıdır.</li>
+																	</ol>
+																</li>
+																<br />
+
+																<li><strong>Üyelik İptali</strong>
+																	<ol>
+																		<li>Platform, kullanıcıların üyeliklerini herhangi bir zamanda kendi takdirine bağlı olarak iptal
+																			etme
+																			hakkını
+																			saklı tutar.
+																		</li>
+																	</ol>
+																</li>
+																<br />
+
+																<li><strong>Değişiklikler ve Güncellemeler</strong>
+																	<ol>
+																		<li>Platform, bu sözleşmeyi herhangi bir zamanda değiştirme hakkını saklı tutar. Kullanıcılar,
+																			değişiklikleri
+																			düzenli olarak kontrol etmelidir.</li>
+																	</ol>
+																</li>
+																<br />
+															</ol>
+
+															<p><strong>Bu Kullanıcı Sözleşmesi'nin kabul edilmesi, Platformun şartlarına uymayı kabul ettiğiniz anlamına
+																	gelir.</strong></p>
+														</div>`,
+			showCloseButton: true,
+			showCancelButton: false,
+			focusConfirm: false,
+			confirmButtonText:
+				'<i class="fa fa-thumbs-up"></i> Mükemmel!',
+			confirmButtonAriaLabel: 'Thumbs up, great!',
+			cancelButtonText:
+				'<i class="fa fa-thumbs-down"></i>',
+			cancelButtonAriaLabel: 'Thumbs down',
+
+			customClass: 'swal-wide'
+		})
+	})
+</script>

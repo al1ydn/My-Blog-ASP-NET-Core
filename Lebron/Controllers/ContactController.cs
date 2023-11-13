@@ -1,10 +1,12 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lebron.Controllers
 {
+	[AllowAnonymous]
 	public class ContactController : Controller
 	{
 		ContactManager contactManager = new ContactManager(new EFContactRepo());
@@ -18,7 +20,7 @@ namespace Lebron.Controllers
 		public IActionResult Index(Contact contact)
 		{
 			contact.Date = DateTime.Now;
-			contact.Status = true;
+			contact.Status = false;
 
 			contactManager.create(contact);
 
