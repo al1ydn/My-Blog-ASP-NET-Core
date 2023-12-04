@@ -10,6 +10,6 @@ namespace DataAccessLayer.Abstract
 	public interface IBlogDAL : IGenericDAL<Blog>
 	{
 		List<Blog> readIncludeCategory();
-		List<Blog> readIncludeCategoryByWriterFilter(int id);
+		List<Blog> readIncludeCategoryByAppUserFilter(int id);
 	}
 }

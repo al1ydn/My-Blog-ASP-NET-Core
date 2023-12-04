@@ -1,5 +1,6 @@
 ﻿using EntityLayer.Concrete;
 using Lebron.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,7 @@ namespace Lebron.Controllers
 			selectedUser.Image = userEditModel.Image;
 			selectedUser.UserName = userEditModel.UserName; // Değişirse tekrar giriş yapmak gerekiyor.
 			selectedUser.Email = userEditModel.Email;
+			selectedUser.PasswordHash = _userManager.PasswordHasher.HashPassword(selectedUser, userEditModel.Password);
 
 			var result = await _userManager.UpdateAsync(selectedUser);
 
@@ -47,6 +49,47 @@ namespace Lebron.Controllers
 			}
 
 			return View();
+		}
+
+		[AllowAnonymous]
+		[HttpGet]
+		public IActionResult Add()
+		{
+			return View();
+		}
+		[AllowAnonymous]
+		[HttpPost]
+		public async Task<IActionResult> Add(UserAddModel userAddModel)
+		{
+			if (ModelState.IsValid)
+			{
+				AppUser appUser = new AppUser();
+				appUser.UserName = userAddModel.UserName;
+
+				var result = await _userManager.CreateAsync(appUser, userAddModel.Password);
+
+				if (result.Succeeded)
+				{
+					return RedirectToAction("SignIn", "UserSignIn");
+				}
+				else
+				{
+					foreach (var item in result.Errors)
+					{
+						ModelState.AddModelError("", item.Description);
+					}
+				}
+			}
+
+			foreach (var modelState in ViewData.ModelState.Values)
+			{
+				foreach (var error in modelState.Errors)
+				{
+					Console.WriteLine(error.ErrorMessage);
+				}
+			}
+
+			return View(userAddModel);
 		}
 	}
 }

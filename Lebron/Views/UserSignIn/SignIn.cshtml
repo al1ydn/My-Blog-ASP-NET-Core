@@ -1,7 +1,7 @@
-﻿@model Lebron.Models.Login2Model
+﻿@model Lebron.Models.UserAddModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "SignIn";
     Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
@@ -32,7 +32,7 @@
 							<label class="form-check-label">Beni hatırla</label>
 						</div>
 						<button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
-						<p><a asp-action="Index" asp-controller="Register2">Bir hesabın yok mu?</a></p>
+						<p><a asp-action="Add">Bir hesabın yok mu?</a></p>
 					</form>
 				</div>
 			</div>

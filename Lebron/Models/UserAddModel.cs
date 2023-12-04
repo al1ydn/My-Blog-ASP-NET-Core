@@ -2,7 +2,7 @@
 
 namespace Lebron.Models
 {
-	public class Login2Model
+	public class UserAddModel
 	{
 		[Display(Name = "Kullanıcı Adı")]
 		[Required(ErrorMessage = "Kullanıcı adı boş geçilemez.")]
@@ -11,5 +11,5 @@ namespace Lebron.Models
 		[Display(Name = "Parola")]
 		[Required(ErrorMessage = "Şifre boş geçilemez.")]
 		public string? Password { get; set; }
-	}
+    }
 }

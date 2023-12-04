@@ -1,0 +1,116 @@
+﻿@model List<EntityLayer.Concrete.Message2>
+
+@{
+	ViewData["Title"] = "Sendbox";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<body>
+	<div class="row">
+		<div class="col-lg-3">
+			<div class="ibox ">
+				<div class="ibox-content mailbox-content">
+					<div class="file-manager">
+						<a class="btn btn-block btn-primary compose-mail" href="mail_compose.html">Yeni Mesaj</a>
+						<div class="space-25"></div>
+
+						<h5>KLASÖRLER</h5>
+						<ul class="folder-list m-b-md" style="padding: 0">
+							<li><a href="mailbox.html"> <i class="fa fa-certificate"></i>Önemli</a></li>
+							<li><a href="mailbox.html"> <i class="fa fa-file-text-o"></i>Taslak<span class="label label-danger float-right">2</span></a></li>
+							<li><a href="mailbox.html"> <i class="fa fa-trash-o"></i>Çöp</a></li>
+						</ul>
+
+						<h5>KATEGORİLER</h5>
+						<ul class="category-list" style="padding: 0">
+							<li><a href="#"> <i class="fa fa-circle text-navy"></i>Work</a></li>
+						</ul>
+
+						<h5 class="tag-title">ETİKETLER</h5>
+						<ul class="tag-list" style="padding: 0">
+							<li><a href=""><i class="fa fa-tag"></i> Family</a></li>
+						</ul>
+
+						<div class="clearfix"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-9 animated fadeInRight">
+			<div class="mail-box-header">
+				<form method="get" action="index.html" class="float-right mail-search">
+					<div class="input-group">
+						<input type="text" class="form-control form-control-sm" name="search" placeholder="Mail ara">
+						<div class="input-group-btn">
+							<button type="submit" class="btn btn-sm btn-primary">
+								Ara
+							</button>
+						</div>
+					</div>
+				</form>
+				<h2>Mesajlar</h2>
+				<div class="mail-tools tooltip-demo m-t-md">
+					<div class="btn-group float-right">
+						<button class="btn btn-white btn-sm"><i class="fa fa-arrow-left"></i></button>
+						<button class="btn btn-white btn-sm"><i class="fa fa-arrow-right"></i></button>
+					</div>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="left" title="Yenile"><i class="fa fa-refresh"></i> Yenile</button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Okundu"><i class="fa fa-eye"></i> </button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Önemli"><i class="fa fa-exclamation"></i> </button>
+					<button class="btn btn-white btn-sm" data-toggle="tooltip" data-placement="top" title="Sil"><i class="fa fa-trash-o"></i> </button>
+				</div>
+			</div>
+
+			<div class="mail-box">
+				<table class="table table-hover table-mail">
+					<tbody>
+						<tr class="unread">
+							<td class="check-mail">
+								<input type="checkbox" class="i-checks">
+							</td>
+							<td class="mail-ontact"><a href="mail_detail.html">Anna Smith</a></td>
+							<td class="mail-subject"><a href="mail_detail.html">Lorem ipsum dolor noretek imit set.</a></td>
+							<td class=""><i class="fa fa-paperclip"></i></td>
+							<td class="text-right mail-date">6.10 AM</td>
+						</tr>
+						<tr class="read">
+							<td class="check-mail">
+								<input type="checkbox" class="i-checks">
+							</td>
+							<td class="mail-ontact"><a href="mail_detail.html">Facebook</a> <span class="label label-warning float-right">Clients</span> </td>
+							<td class="mail-subject"><a href="mail_detail.html">Many desktop publishing packages and web page editors.</a></td>
+							<td class=""></td>
+							<td class="text-right mail-date">Jan 16</td>
+						</tr>
+						<tr class="read">
+							<td class="check-mail">
+								<input type="checkbox" class="i-checks">
+							</td>
+							<td class="mail-ontact"><a href="mail_detail.html">Anna Smith</a></td>
+							<td class="mail-subject"><a href="mail_detail.html">Lorem ipsum dolor noretek imit set.</a></td>
+							<td class=""><i class="fa fa-paperclip"></i></td>
+							<td class="text-right mail-date">6.10 AM</td>
+						</tr>
+
+						@foreach (var item in Model)
+						{
+							<tr class="read">
+								<td class="check-mail">
+									<input type="checkbox" class="i-checks">
+								</td>
+								<td class="mail-ontact"><a href="mail_detail.html">@item.ReceiverAppUser.Name</a></td>
+								<td class="mail-subject"><a href="mail_detail.html">@item.Subject</a></td>
+								<td class=""></td>
+								<td class="text-right mail-date">@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+
+	<!-- Mainly scripts -->
+	<!-- Custom and plugin javascript -->
+	<!-- iCheck -->
+</body>

@@ -1,10 +1,13 @@
 using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc.Authorization;
 // Ben ekledim - logging
 using Microsoft.Extensions.Logging.Console;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,8 +40,28 @@ builder.Services.AddAuthentication(
 	CookieAuthenticationDefaults.AuthenticationScheme)
 	.AddCookie(x =>
 	{
-		x.LoginPath = "/Login/Index";
+		x.LoginPath = "/UserSignIn/SignIn";
 	});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+	options.Cookie.HttpOnly = true;
+	options.ExpireTimeSpan = TimeSpan.FromDays(2);
+
+	options.LoginPath = "/UserSignIn/SignIn";
+	options.SlidingExpiration = true;
+
+	options.AccessDeniedPath = "/ErrorPage/Error2";
+});
+
+builder.Services.AddAuthorization(options =>
+{
+	options.AddPolicy(
+		"MustBeAdmin",
+		new AuthorizationPolicyBuilder()
+			.RequireRole("Admin")
+			.Build());
+});
 
 // Ben ekledim - logging
 //builder.Logging.AddSimpleConsole(i => i.ColorBehavior = LoggerColorBehavior.Disabled);

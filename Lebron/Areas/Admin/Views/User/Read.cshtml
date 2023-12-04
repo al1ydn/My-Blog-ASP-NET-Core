@@ -1,0 +1,55 @@
+﻿@model List<EntityLayer.Concrete.AppUser>
+
+@{
+	ViewData["Title"] = "Read";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+	<!-- Toastr style -->
+	<link href="css/plugins/toastr/toastr.min.css" rel="stylesheet">
+</head>
+
+<body>
+	<div class="row">
+		@foreach (var item in Model)
+		{
+			<div class="col-md-3">
+				<div class="ibox">
+					<div class="ibox-content product-box">
+						<div class="product-imitation" style="padding: 0;">
+							<img src="@item.Image" width="100%;" />
+						</div>
+						<div class="product-desc">
+							<span class="product-price">@item.UserName</span>
+							<small class="text-muted">@item.Email</small>
+							<a href="#" class="product-name">@item.Name</a>
+							<div class="small m-t-xs">
+								<div style="text-overflow: ellipsis; white-space: nowrap; overflow:hidden;">@item.About</div>
+							</div>
+							<div class="m-t text-righ">
+								<a href="#" class="btn btn-xs btn-outline btn-primary">Profil <i class="fa fa-long-arrow-right"></i> </a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		}
+	</div>
+
+	<!-- Mainly scripts -->
+	<!-- Custom and plugin javascript -->
+</body>

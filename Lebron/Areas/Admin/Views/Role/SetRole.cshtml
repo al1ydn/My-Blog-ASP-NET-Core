@@ -1,0 +1,52 @@
+﻿@model Lebron.Areas.Admin.Models.SetRoleViewModel
+
+@{
+	ViewData["Title"] = "SetRole";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<div class="col-lg-5">
+	<div class="row">
+		<div class="wrapper wrapper-content animated fadeInRight">
+			<div class="ibox ">
+				<div class="ibox-title">
+					<h5>Rol Ata</h5>
+				</div>
+
+				<div class="ibox-content">
+					<form method="post">
+						<div class="form-group">
+							<label class="font-normal">Kullanıcı</label>
+							<div>
+								<select asp-for="@Model.SelectedUserUserName" id="userSelect" onchange="getRolesOfUser()" data-placeholder="Kullanıcı seç..." class="chosen-select" tabindex="2" required>
+									<option value="" selected disabled>Seç</option>
+									@foreach (var item in Model.UserUserNames)
+									{
+										<option value="@item">@item</option>
+									}
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="font-normal">Roller</label>
+							<div>
+								<div id="GetRolesOfUserView">
+									<partial name="GetRolesOfUser"></partial>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<button class="btn btn-primary" type="submit" style="width: 150px">Ata</button>
+							<a asp-action="GetList" class="btn btn-white" type="button" style="width: 150px">İptal</a>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+<script src="/js/getRolesOfUser.js?v=@DateTime.Now"></script>

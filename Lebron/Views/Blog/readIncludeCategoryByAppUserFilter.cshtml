@@ -1,7 +1,7 @@
 ﻿@model List<EntityLayer.Concrete.Blog>
 
 @{
-	ViewData["Title"] = "readIncludeCategoryByWriterFilter";
+	ViewData["Title"] = "readIncludeCategoryByAppUserFilter";
 	Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
@@ -16,7 +16,7 @@
 			<div class="card-body">
 				<h4 class="card-title">Bloglarım</h4>
 				<div class="table-responsive">
-					<table class="table">
+					<table id="items" class="table">
 						<thead>
 							<tr>
 								<th>Başlık</th>
@@ -29,7 +29,7 @@
 						<tbody>
 							@foreach (var item in Model)
 							{
-								<tr>
+								<tr id="@item.Id">
 									<td>
 										<a href="/Blog/Detail/@item.Id" style="text-decoration:none; color:black;">@item.Title</a>
 									</td>
@@ -39,7 +39,8 @@
 										<a href="/Blog/Update/@item.Id" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Düzenle</a>
 									</td>
 									<td>
-										<a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a>
+										<button id="@item.Id" onclick="deleteItem(@item.Id)" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Sil</button>
+										@* <a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a> *@
 										@* <a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a> *@
 									</td>
 								</tr>
@@ -53,10 +54,8 @@
 </div>
 <a href="/Blog/Create" class="btn btn-success btn-sm" style="width: 160px;">Yeni</a>
 
-@* <script>
-	$('.confirm_delete').click(function (e) {
-		e.preventDefault();
-
+<script>
+	function deleteItem(id) {
 		Swal.fire({
 			title: 'Emin misin?',
 			text: "Silme işlemini geri alamayacaksın!",
@@ -68,43 +67,31 @@
 			cancelButtonText: 'Vazgeç'
 		}).then((result) => {
 			if (result.isConfirmed) {
-				Swal.fire(
-					'Silindi!',
-					'Seçtiğin blog silindi.',
-					'success'
-				);
-				var linkim = document.getElementById("hidden-delete-link").href;
-				console.log('Query: ' + `${linkim}`);
-				// window.location.href = `${linkim}`;
-			}
-		})
-	})
-</script> *@
+				$.ajax({
+					url: `/Blog/Delete/${id}`,
+					success: function () {
+						Swal.fire({
+							title: 'Silindi!',
+							text: 'Seçtiğin blog silindi.',
+							icon: 'success',
+							showConfirmButton: false,
+							timer: 1500
+						});
 
-@* <script>
-	function onayla(e) {
-		e.preventDefault();
-		Swal.fire({
-			title: 'Emin misin?',
-			text: "Silme işlemini geri alamayacaksın!",
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Evet, sil!',
-			cancelButtonText: 'Vazgeç'
-		}).then((result) => {
-			if (result.isConfirmed) {
-				Swal.fire(
-					'Silindi!',
-					'Seçtiğin blog silindi.',
-					'success'
-				),
-				return 0
-				// var linkim = document.getElementById("hidden-delete-link").href;
-				// console.log('Query: ' + `${linkim}`);
-				// window.location.href = `${linkim}`;
+						$(`#${id}`).remove();
+					},
+					error: function () {
+						Swal.fire({
+							title: 'Hata!',
+							text: 'Seçtiğin blog silinemedi.',
+							icon: 'error',
+							confirmButtonText: 'Tamam'
+						});
+
+						$(`#${id}`).remove();
+					}
+				});
 			}
 		});
 	}
-</script> *@
+</script>

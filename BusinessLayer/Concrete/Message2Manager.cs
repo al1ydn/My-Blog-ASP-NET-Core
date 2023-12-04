@@ -45,14 +45,19 @@ namespace BusinessLayer.Concrete
 			return _message2DAL.readByFilter(x => x.ReceiverId == receiverId);
 		}
 
-		public List<Message2> readIncludeWriterByMessage2ReceiverFilter(int receiverId)
+		public List<Message2> readIncludeUserByMessage2ReceiverFilter(int receiverId)
 		{
-			return _message2DAL.readIncludeWriterByMessage2ReceiverFilter(receiverId);
+			return _message2DAL.readIncludeUserByMessage2ReceiverFilter(receiverId);
+		}
+
+		public List<Message2> readIncludeUserByMessage2SenderFilter(int senderId)
+		{
+			return _message2DAL.readIncludeUserByMessage2SenderFilter(senderId);
 		}
 
 		public void update(Message2 t)
 		{
-			throw new NotImplementedException();
+			_message2DAL.update(t);
 		}
 	}
 }

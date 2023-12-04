@@ -233,6 +233,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
@@ -258,6 +261,8 @@ namespace DataAccessLayer.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("CategoryId");
 
@@ -397,6 +402,12 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int?>("AppUserReceiverId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("AppUserSenderId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime?>("Date")
                         .HasColumnType("datetime2");
 
@@ -415,7 +426,14 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Subject")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool?>("isRead")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserReceiverId");
+
+                    b.HasIndex("AppUserSenderId");
 
                     b.HasIndex("ReceiverId");
 
@@ -613,6 +631,12 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
                 {
+                    b.HasOne("EntityLayer.Concrete.AppUser", "AppUser")
+                        .WithMany("Blogs")
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("EntityLayer.Concrete.Category", "Category")
                         .WithMany("Blogs")
                         .HasForeignKey("CategoryId")
@@ -624,6 +648,8 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("WriterId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
 
                     b.Navigation("Category");
 
@@ -643,6 +669,14 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
                 {
+                    b.HasOne("EntityLayer.Concrete.AppUser", "ReceiverAppUser")
+                        .WithMany("ReceivedMessage2s")
+                        .HasForeignKey("AppUserReceiverId");
+
+                    b.HasOne("EntityLayer.Concrete.AppUser", "SenderAppUser")
+                        .WithMany("SendMessage2s")
+                        .HasForeignKey("AppUserSenderId");
+
                     b.HasOne("EntityLayer.Concrete.Writer", "ReceiverWriter")
                         .WithMany("ReceivedMessage2s")
                         .HasForeignKey("ReceiverId");
@@ -651,7 +685,11 @@ namespace DataAccessLayer.Migrations
                         .WithMany("SendMessage2s")
                         .HasForeignKey("SenderId");
 
+                    b.Navigation("ReceiverAppUser");
+
                     b.Navigation("ReceiverWriter");
+
+                    b.Navigation("SenderAppUser");
 
                     b.Navigation("SenderWriter");
                 });
@@ -705,6 +743,15 @@ namespace DataAccessLayer.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("EntityLayer.Concrete.AppUser", b =>
+                {
+                    b.Navigation("Blogs");
+
+                    b.Navigation("ReceivedMessage2s");
+
+                    b.Navigation("SendMessage2s");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>

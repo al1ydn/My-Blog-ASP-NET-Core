@@ -1,4 +1,5 @@
 ﻿using BusinessLayer.Concrete;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Lebron.Models;
@@ -27,9 +28,15 @@ namespace Lebron.Controllers
 			return View(blogManager.readByFilter(id));
 		}
 
-		public IActionResult readIncludeCategoryByWriterFilter(int writerId)
+		public IActionResult readIncludeCategoryByAppUserFilter(int writerId)
 		{
-			return View(blogManager.readIncludeCategoryByWriterFilter(2));
+			var userName = User.Identity.Name;
+			Context context = new Context();
+			var userId = context.Users.Where(x => x.UserName == userName)
+										.Select(x => x.Id)
+										.FirstOrDefault();
+
+			return View(blogManager.readIncludeCategoryByAppUserFilter(userId));
 		}
 
 		[HttpGet]
@@ -74,12 +81,12 @@ namespace Lebron.Controllers
 
 		public IActionResult Delete(int id)
 		{
-			Blog blog = blogManager.readById(id);
-			blog.Status = false;
+			Blog selectedBlog = blogManager.readById(id);
+			selectedBlog.Status = false;
 
-			blogManager.update(blog);
+			blogManager.update(selectedBlog);
 
-			return RedirectToAction("readIncludeCategoryByWriterFilter", "Blog");
+			return RedirectToAction("readIncludeCategoryByAppUserFilter", "Blog");
 		}
 
 		[HttpGet]

@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BusinessLayer", "BusinessLa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoreLayer", "CoreLayer\CoreLayer.csproj", "{BFD51052-9BC5-4927-8358-BE5A0495F497}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Honda", "Honda\Honda.csproj", "{17C48DA6-6BCC-46D8-9A14-C8B9F9CDC872}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Honda", "Honda\Honda.csproj", "{17C48DA6-6BCC-46D8-9A14-C8B9F9CDC872}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sophia", "Sophia\Sophia.csproj", "{4D5AA175-E3CE-49B8-88E8-5EA9C2A8FB63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{17C48DA6-6BCC-46D8-9A14-C8B9F9CDC872}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{17C48DA6-6BCC-46D8-9A14-C8B9F9CDC872}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{17C48DA6-6BCC-46D8-9A14-C8B9F9CDC872}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D5AA175-E3CE-49B8-88E8-5EA9C2A8FB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D5AA175-E3CE-49B8-88E8-5EA9C2A8FB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D5AA175-E3CE-49B8-88E8-5EA9C2A8FB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D5AA175-E3CE-49B8-88E8-5EA9C2A8FB63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

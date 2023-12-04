@@ -16,6 +16,6 @@ namespace BusinessLayer.Abstract
 		List<Blog> readByLatestFilter(int id);
 
 		List<Blog> readIncludeCategory();
-		List<Blog> readIncludeCategoryByWriterFilter(int id);
+		List<Blog> readIncludeCategoryByAppUserFilter(int id);
 	}
 }

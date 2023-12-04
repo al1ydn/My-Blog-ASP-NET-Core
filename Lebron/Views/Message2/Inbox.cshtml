@@ -1,0 +1,117 @@
+﻿@model List<EntityLayer.Concrete.Message2>
+
+@{
+	ViewData["Title"] = "Inbox";
+	Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+<script src="/inspinia-gh-pages/js/jquery-3.1.1.min.js"></script>
+
+<div class="row">
+	<div class="col-12 grid-margin">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Mesajlar</h4>
+				<div class="table-responsive">
+					<table class="table">
+						<thead>
+							<tr>
+								<th></th>
+								<th>Gönderen</th>
+								<th>Konu</th>
+								<th>Tarih</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							@{
+								string fontWeight = "";
+								string buttonClass = "";
+								string buttonText = "";
+
+								foreach (var item in Model)
+								{
+									if (item.isRead == true)
+									{
+										fontWeight = "normal";
+										buttonClass = "btn-light";
+										buttonText = "OKUNDU";
+									}
+									else
+									{
+										fontWeight = "bold";
+										buttonClass = "btn-secondary";
+										buttonText = "OKUNMADI";
+									}
+
+									<tr id="tr@{@item.Id}" style="font-weight: @fontWeight;">
+										<td>
+											<img src="@item.SenderAppUser.Image" class="mr-2" alt="image">
+										</td>
+										<td>
+											<a href="#" style="text-decoration: none; color: black;">@item.SenderAppUser.Name</a>
+										</td>
+										<td>
+											<a asp-action="Detail" asp-controller="Message2" asp-route-id="@item.Id" onclick="editIsReadAsRead(@item.Id)" style="text-decoration: none; color: black;">@item.Subject</a>
+										</td>
+										<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
+										<td>
+											<button onclick="editIsRead(@item.Id)" id="button@{@item.Id}" class="btn @buttonClass btn-sm" style="width:100px; font-size:12px;">
+												@buttonText
+											</button>
+										</td>
+									</tr>
+								}
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	function editIsRead(id) {
+		$.ajax({
+			url: `/Message2/EditIsRead/${id}`,
+			success: function (isRead) {
+				if (isRead == true) {
+					$(`#tr${id}`).css({
+						fontWeight: "normal"
+					});
+
+					$(`#button${id}`).text("OKUNDU");
+					$(`#button${id}`).addClass("btn-light");
+					$(`#button${id}`).removeClass("btn-secondary");
+				}
+				else {
+					$(`#tr${id}`).css({
+						fontWeight: "bold"
+					});
+
+					$(`#button${id}`).text("OKUNMADI");
+					$(`#button${id}`).addClass("btn-secondary");
+					$(`#button${id}`).removeClass("btn-light");
+				};
+			}
+		});
+	};
+
+	function editIsReadAsRead(id) {
+		$.ajax({
+			url: `/Message2/EditIsReadAsRead/${id}`,
+			success: function () {
+				$(`#tr${id}`).css({
+					fontWeight: "normal"
+				});
+
+				$(`#button${id}`).text("OKUNDU");
+				$(`#button${id}`).addClass("btn-light");
+				$(`#button${id}`).removeClass("btn-secondary");
+			}
+		});
+	};
+</script>

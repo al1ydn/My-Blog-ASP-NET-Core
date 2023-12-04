@@ -1,0 +1,63 @@
+﻿@model List<EntityLayer.Concrete.Comment>
+
+@{
+	ViewData["Title"] = "Read";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox ">
+				<div class="ibox-title">
+					<h5>Kategoriler</h5>
+				</div>
+				<div class="ibox-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>İsim</th>
+								<th>Başlık</th>
+								<th>Puan</th>
+								<th>Mail</th>
+								<th>Tarih</th>
+								<th>Durum</th>
+							</tr>
+						</thead>
+						<tbody>
+							@{
+								string ratingClass = "";
+								string ratingIcon = "";
+							}
+							@foreach (var item in Model)
+							{
+								if (item.Rating <= 3)
+								{
+									ratingClass = "text-danger";
+									ratingIcon = "fa fa-level-down";
+								}
+								else
+								{
+									ratingClass = "text-info";
+									ratingIcon = "fa fa-level-up";
+								}
+
+								<tr>
+									<th>@item.Username</th>
+									<th>@item.Title</th>
+									<td class="@ratingClass">
+										<i class="@ratingIcon"></i>
+										@item.Rating
+									</td>
+									<td>@item.Mail</td>
+									<td>@item.Date</td>
+									<td>@item.Status</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

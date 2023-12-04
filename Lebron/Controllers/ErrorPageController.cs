@@ -8,5 +8,10 @@ namespace Lebron.Controllers
 		{
 			return View();
 		}
+
+		public IActionResult Error2(int code)
+		{
+			return View();
+		}
 	}
 }

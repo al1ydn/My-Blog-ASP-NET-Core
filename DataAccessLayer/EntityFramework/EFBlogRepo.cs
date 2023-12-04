@@ -21,11 +21,11 @@ namespace DataAccessLayer.EntityFramework
 			};
 		}
 
-		public List<Blog> readIncludeCategoryByWriterFilter(int id)
+		public List<Blog> readIncludeCategoryByAppUserFilter(int id)
 		{
 			using (var c = new Context())
 			{
-				return c.Blogs.Include(x => x.Category).Where(x => x.WriterId == id).ToList();
+				return c.Blogs.Include(x => x.Category).Where(x => x.AppUserId == id).ToList();
 			};
 		}
 	}

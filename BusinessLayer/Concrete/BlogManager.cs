@@ -67,9 +67,11 @@ namespace BusinessLayer.Concrete
 			return _blogDAL.readIncludeCategory();
 		}
 
-		public List<Blog> readIncludeCategoryByWriterFilter(int id)
+		public List<Blog> readIncludeCategoryByAppUserFilter(int id)
 		{
-			return _blogDAL.readIncludeCategoryByWriterFilter(id);
+			return _blogDAL.readIncludeCategoryByAppUserFilter(id)
+							.Where(x => x.Status == true)
+							.ToList();
 		}
 	}
 }

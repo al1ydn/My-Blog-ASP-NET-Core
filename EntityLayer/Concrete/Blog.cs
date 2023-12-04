@@ -23,5 +23,8 @@ namespace EntityLayer.Concrete
         public Writer Writer { get; set; }
 
         public List<Comment> Comments { get; set; }
+
+        public int AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
     }
 }

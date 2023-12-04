@@ -1,0 +1,54 @@
+﻿@model List<Lebron.Areas.Admin.Models.RoleModel>
+
+@{
+	ViewData["Title"] = "GetList";
+	Layout = "~/Areas/Admin/Views/Shared/AdminLayout/AdminLayout.cshtml";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="ibox ">
+				<div class="ibox-title">
+					<h5>Rollere</h5>
+				</div>
+				<div class="ibox-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>İsim</th>
+								<th style="width: 6%"></th>
+								<th style="width: 6%"></th>
+							</tr>
+						</thead>
+						<tbody>
+							@foreach (var item in Model)
+							{
+								<tr>
+									<td>@item.Name</td>
+									<td>
+										<a asp-action="Delete" asp-route-name="@item.Name" class="btn btn-white btn-bitbucket">
+											<i class="fa fa-trash fa-lg" style="color: #F45050;"></i>
+										</a>
+									</td>
+									<td>
+										<a asp-action="Update" asp-route-name="@item.Name" class="btn btn-white btn-bitbucket">
+											<i class="fa fa-pencil fa" style="color: #3C486B;"></i>
+										</a>
+									</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+
+					<a asp-action="Add" class="btn btn-primary" type="button" style="width: 150px;">
+						<i class="fa fa-plus"></i>&nbsp;Ekle
+					</a>
+					<a asp-action="SetRole" class="btn btn-primary btn-outline" type="button" style="width: 100px;">
+						<i class="fa fa-lock"></i>&nbsp;Ata
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

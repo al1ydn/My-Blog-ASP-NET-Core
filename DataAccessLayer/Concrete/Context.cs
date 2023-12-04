@@ -44,6 +44,18 @@ namespace DataAccessLayer.Concrete
 				.OnDelete(DeleteBehavior.ClientSetNull);
 
 			base.OnModelCreating(modelBuilder);
+
+			modelBuilder.Entity<Message2>()
+				.HasOne(x => x.SenderAppUser)
+				.WithMany(y => y.SendMessage2s)
+				.HasForeignKey(z => z.AppUserSenderId)
+				.OnDelete(DeleteBehavior.ClientSetNull);
+
+			modelBuilder.Entity<Message2>()
+				.HasOne(x => x.ReceiverAppUser)
+				.WithMany(y => y.ReceivedMessage2s)
+				.HasForeignKey(z => z.AppUserReceiverId)
+				.OnDelete(DeleteBehavior.ClientSetNull);
 		}
 	}
 }
