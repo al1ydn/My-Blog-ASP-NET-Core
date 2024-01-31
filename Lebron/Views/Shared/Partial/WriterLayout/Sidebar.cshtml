@@ -3,6 +3,15 @@
 
 <nav class="sidebar sidebar-offcanvas" id="sidebar" style="margin-top:20px;">
 	<ul class="nav">
+		@if (User.IsInRole("Admin"))
+		{
+			<li class="nav-item">
+				<a class="nav-link" asp-action="" asp-controller="Category" asp-area="Admin">
+					<span class="menu-title">Admin Kontrol Paneli</span>
+					<i class="mdi mdi-crown menu-icon"></i>
+				</a>
+			</li>
+		}
 		<li class="nav-item">
 			<a class="nav-link" asp-action="" asp-controller="Dashboard">
 				<span class="menu-title">Kontrol Paneli</span>
@@ -10,7 +19,7 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" asp-action="Edit" asp-controller="User">
+			<a class="nav-link" asp-route-userName="@User.Identity.Name" asp-action="Edit" asp-controller="User">
 				<span class="menu-title">Profilim</span>
 				<i class="mdi mdi-account-outline menu-icon"></i>
 			</a>
@@ -53,22 +62,10 @@
 			</a>
 		</li>
 		<li class="nav-item">
-			<a class="nav-link" asp-action="UserSignOut" asp-controller="UserSignIn">
+			<a asp-route-ReturnUrlOut="@Url.Page("/", new { area = "" })" asp-action="UserSignOut" asp-controller="UserSignIn" class="nav-link">
 				<span class="menu-title">Çıkış Yap</span>
 				<i class="mdi mdi-power menu-icon"></i>
 			</a>
 		</li>
-
-		@* @User.IsInRole("Admin")
-		@User.HasClaim() *@
-		@if (AuthorizationService.AuthorizeAsync(User, "MustBeAdmin").Result.Succeeded)
-		{
-			<li class="nav-item">
-				<a class="nav-link" asp-action="" asp-controller="Category" asp-area="Admin">
-					<span class="menu-title">Admin Kontrol Paneli</span>
-					<i class="mdi mdi-power menu-icon"></i>
-				</a>
-			</li>
-		}
 	</ul>
 </nav>

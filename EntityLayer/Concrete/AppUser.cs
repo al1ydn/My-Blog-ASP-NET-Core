@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace EntityLayer.Concrete
 		public string? About { get; set; }
 		public string? Image { get; set; }
 		public string? Password { get; set; }
+        public DateTime? Birthdate { get; set; }
 
         public List<Blog> Blogs { get; set; }
 

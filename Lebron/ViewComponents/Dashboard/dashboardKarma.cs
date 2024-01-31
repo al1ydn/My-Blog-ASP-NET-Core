@@ -10,7 +10,7 @@ namespace Lebron.ViewComponents.Dashboard
 		{
 			AssessManager assessManager = new AssessManager(new EFAssessRepo());
 
-			return View(assessManager.readByWriterFilter(writerId));
+			return View(assessManager.readByAppUserFilter(writerId));
 		}
 	}
 }

@@ -1,4 +1,4 @@
-﻿@model Lebron.Models.UserAddModel
+﻿@model BusinessLayer.Validation.User.UserAddModel
 
 @{
 	ViewData["Title"] = "Add";
@@ -49,6 +49,11 @@
 								<label asp-for="Password">Parola</label>
 								<input asp-for="Password" type="password" class="form-control" />
 								<span asp-validation-for="Password" class="text-danger"></span>
+							</div>
+							<div class="col-md-6 mb-3">
+								<label asp-for="Email">Mail</label>
+								<input asp-for="Email" class="form-control" />
+								<span asp-validation-for="Email" class="text-danger"></span>
 							</div>
 						</div>
 

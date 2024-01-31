@@ -40,9 +40,9 @@ namespace BusinessLayer.Concrete
 			throw new NotImplementedException();
 		}
 
-		public List<Assess> readByWriterFilter(int id)
+		public List<Assess> readByAppUserFilter(int id)
 		{
-			return _assessDAL.readByFilter(x => x.WriterId == id);
+			return _assessDAL.readByFilter(x => x.AppUserId == id);
 		}
 
 		public void update(Assess t)

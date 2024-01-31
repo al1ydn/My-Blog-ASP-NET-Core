@@ -57,9 +57,9 @@ namespace BusinessLayer.Concrete
 			return list;
 		}
 
-		public List<Blog> readByWriterFilter(int id)
+		public List<Blog> readByAppUserFilter(int id)
 		{
-			return _blogDAL.readByFilter(x => x.WriterId == id);
+			return _blogDAL.readByFilter(x => x.AppUserId == id);
 		}
 
 		public List<Blog> readIncludeCategory()
@@ -70,8 +70,8 @@ namespace BusinessLayer.Concrete
 		public List<Blog> readIncludeCategoryByAppUserFilter(int id)
 		{
 			return _blogDAL.readIncludeCategoryByAppUserFilter(id)
-							.Where(x => x.Status == true)
-							.ToList();
+				           .Where(x => x.Status == true)
+						   .ToList();
 		}
 	}
 }

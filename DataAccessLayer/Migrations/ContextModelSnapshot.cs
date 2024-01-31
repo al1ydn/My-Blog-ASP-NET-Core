@@ -50,7 +50,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Abouts");
+                    b.ToTable("Abouts", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Admin", b =>
@@ -87,7 +87,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Admins");
+                    b.ToTable("Admins", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.AppRole", b =>
@@ -133,6 +133,9 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
+
+                    b.Property<DateTime?>("Birthdate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -208,6 +211,9 @@ namespace DataAccessLayer.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<int>("AppUserId")
+                        .HasColumnType("int");
+
                     b.Property<int>("BlogId")
                         .HasColumnType("int");
 
@@ -217,12 +223,9 @@ namespace DataAccessLayer.Migrations
                     b.Property<int?>("Score")
                         .HasColumnType("int");
 
-                    b.Property<int>("WriterId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.ToTable("Assesses");
+                    b.ToTable("Assesses", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Blog", b =>
@@ -257,18 +260,13 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("WriterId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("AppUserId");
 
                     b.HasIndex("CategoryId");
 
-                    b.HasIndex("WriterId");
-
-                    b.ToTable("Blogs");
+                    b.ToTable("Blogs", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Category", b =>
@@ -290,7 +288,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -329,7 +327,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("BlogId");
 
-                    b.ToTable("Comments");
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Contact", b =>
@@ -360,7 +358,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Message", b =>
@@ -391,7 +389,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Messages");
+                    b.ToTable("Messages", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Message2", b =>
@@ -439,7 +437,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasIndex("SenderId");
 
-                    b.ToTable("Message2s");
+                    b.ToTable("Message2s", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Notification", b =>
@@ -467,7 +465,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Notifications");
+                    b.ToTable("Notifications", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Subscriber", b =>
@@ -486,7 +484,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subscribers");
+                    b.ToTable("Subscribers", (string)null);
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
@@ -523,7 +521,7 @@ namespace DataAccessLayer.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Writers");
+                    b.ToTable("Writers", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -643,17 +641,9 @@ namespace DataAccessLayer.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EntityLayer.Concrete.Writer", "Writer")
-                        .WithMany("Blogs")
-                        .HasForeignKey("WriterId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("AppUser");
 
                     b.Navigation("Category");
-
-                    b.Navigation("Writer");
                 });
 
             modelBuilder.Entity("EntityLayer.Concrete.Comment", b =>
@@ -766,8 +756,6 @@ namespace DataAccessLayer.Migrations
 
             modelBuilder.Entity("EntityLayer.Concrete.Writer", b =>
                 {
-                    b.Navigation("Blogs");
-
                     b.Navigation("ReceivedMessage2s");
 
                     b.Navigation("SendMessage2s");

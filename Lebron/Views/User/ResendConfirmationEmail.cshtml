@@ -1,0 +1,39 @@
+﻿@model BusinessLayer.Validation.User.ResendConfirmationEmailViewModel
+
+@{
+    ViewData["Title"] = "ResendConfirmationEmail";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+
+<body>
+	<!--Header-->
+	<!--//header-->
+	<!--/banner-->
+	<!--//banner-->
+	<!--/main-->
+	<section class="main-content-w3layouts-agileits">
+		<div class="container">
+			<h3 class="tittle">Giriş Yap</h3>
+			<div class="row inner-sec">
+				<div class="login p-5 bg-light mx-auto mw-100">
+					<form method="post">
+						<div class="form-group">
+							<label asp-for="Email">Mail</label>
+							<input asp-for="Email" class="form-control">
+							<span asp-validation-for="Email" class="text-danger"></span>
+						</div>
+						<button type="submit" class="btn btn-primary submit mb-4">Yolla</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!--//main-->
+	<!--footer-->
+	<!---->
+	<!-- js -->
+	<!-- //js -->
+	<!--/ start-smoth-scrolling -->
+	<!--// end-smoth-scrolling -->
+	<!-- //Custom-JavaScript-File-Links -->
+</body>

@@ -11,9 +11,9 @@
 {
 	@await Html.PartialAsync("~/Views/Blog/Form.cshtml")
 
-	@Html.HiddenFor(x => x.Date)
-	@Html.HiddenFor(x => x.Status)
-	@Html.HiddenFor(x => x.WriterId)
+	<input asp-for="Date" hidden/>
+	<input asp-for="Status" hidden/>
+	<input asp-for="AppUserId" hidden/>
 
 	<div class="mb-3">
 		<button type="submit" class="btn btn-success btn-sm" style="width: 160px;">Düzenle</button>

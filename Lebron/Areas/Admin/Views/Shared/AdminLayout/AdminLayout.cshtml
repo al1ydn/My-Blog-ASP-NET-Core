@@ -89,7 +89,7 @@
 							</ul>
 						</li>
 						<li>
-							<a asp-action="UserSignOut" asp-controller="UserSignIn" asp-area="">
+							<a asp-route-returnUrlOut="@Url.Page("/", new { area = "Admin" })" asp-action="UserSignOut" asp-controller="UserSignIn" asp-area="">
 								<i class="fa fa-sign-out"></i> Çıkış yap
 							</a>
 						</li>

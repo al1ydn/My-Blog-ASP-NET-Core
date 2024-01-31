@@ -12,6 +12,6 @@ namespace EntityLayer.Concrete
         public int? Score { get; set; }
         public int? Count { get; set; }
         public int BlogId { get; set; }
-        public int WriterId { get; set; }
+        public int AppUserId { get; set; }
     }
 }

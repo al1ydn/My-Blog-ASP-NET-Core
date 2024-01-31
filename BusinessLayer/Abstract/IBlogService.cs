@@ -12,7 +12,7 @@ namespace BusinessLayer.Abstract
 	{
 		//List<Blog> readByFilter(Expression<Func<Blog, bool>> filer);
 		List<Blog> readByFilter(int id);
-		List<Blog> readByWriterFilter(int id);
+		List<Blog> readByAppUserFilter(int id);
 		List<Blog> readByLatestFilter(int id);
 
 		List<Blog> readIncludeCategory();

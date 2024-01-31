@@ -9,6 +9,6 @@ namespace BusinessLayer.Abstract
 {
 	public interface IAssessService : IGenericService<Assess>
 	{
-		List<Assess> readByWriterFilter(int id);
+		List<Assess> readByAppUserFilter(int id);
 	}
 }

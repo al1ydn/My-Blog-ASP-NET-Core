@@ -18,7 +18,7 @@
 						<div class="form-group">
 							<label class="font-normal">Kullanıcı</label>
 							<div>
-								<select asp-for="@Model.SelectedUserUserName" id="userSelect" onchange="getRolesOfUser()" data-placeholder="Kullanıcı seç..." class="chosen-select" tabindex="2" required>
+								<select asp-for="@Model.SelectedUserUserName" id="userSelect" onchange="getRolesOfUser()" data-placeholder="Kullanıcı seç..." class="chosen-select" required>
 									<option value="" selected disabled>Seç</option>
 									@foreach (var item in Model.UserUserNames)
 									{
@@ -49,4 +49,4 @@
 </div>
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-<script src="/js/getRolesOfUser.js?v=@DateTime.Now"></script>
+<script src="/js/getRolesOfUser.js"></script>

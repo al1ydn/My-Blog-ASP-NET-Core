@@ -1,8 +1,8 @@
-﻿@model Lebron.Models.UserAddModel
+﻿@model BusinessLayer.Validation.User.UserSignInModel
 
 @{
-    ViewData["Title"] = "SignIn";
-    Layout = "~/Views/Shared/UserLayout.cshtml";
+	ViewData["Title"] = "SignIn";
+	Layout = "~/Views/Shared/UserLayout.cshtml";
 }
 
 <body>
@@ -28,11 +28,15 @@
 							<span asp-validation-for="Password" class="text-danger"></span>
 						</div>
 						<div class="form-check mb-2">
-							<input type="checkbox" class="form-check-input">
-							<label class="form-check-label">Beni hatırla</label>
+							<label class="form-check-label">
+								<input asp-for="RememberMe" type="checkbox" class="form-check-input">
+								<span asp-validation-for="RememberMe" class="text-danger"></span>
+								Beni hatırla
+							</label>
 						</div>
 						<button type="submit" class="btn btn-primary submit mb-4">Giriş Yap</button>
 						<p><a asp-action="Add">Bir hesabın yok mu?</a></p>
+						<p><a asp-action="ResendConfirmationEmail" asp-controller="User">Onay maili gelmedi mi?</a></p>
 					</form>
 				</div>
 			</div>

@@ -1,4 +1,7 @@
 ﻿@model List<EntityLayer.Concrete.Blog>
+@using BusinessLayer.Authorization.Entities.Blog;
+@using Microsoft.AspNetCore.Authorization;
+@inject IAuthorizationService AuthorizationService
 
 @{
 	ViewData["Title"] = "readIncludeCategoryByAppUserFilter";
@@ -36,10 +39,18 @@
 									<td>@item.Category.Name</td>
 									<td>@(((DateTime)item.Date).ToString("MMM d yyyy"))</td>
 									<td>
-										<a href="/Blog/Update/@item.Id" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Düzenle</a>
+										@if ((await AuthorizationService
+												.AuthorizeAsync(User, item, BlogOperations.Update)).Succeeded)
+										{
+											<a href="/Blog/Update/@item.Id" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Düzenle</a>
+										}
 									</td>
 									<td>
-										<button id="@item.Id" onclick="deleteItem(@item.Id)" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Sil</button>
+										@if ((await AuthorizationService
+												.AuthorizeAsync(User, item, BlogOperations.Delete)).Succeeded)
+										{
+											<button id="@item.Id" onclick="deleteItem(@item.Id)" class="btn btn-secondary btn-sm" style="width:60px; font-size:12px;">Sil</button>
+										}
 										@* <a href="#" class="btn btn-secondary btn-sm confirm_delete" style="width:60px; font-size:12px;">Sil</a> *@
 										@* <a id="hidden-delete-link" href="/Blog/Delete/@item.Id" hidden></a> *@
 									</td>
@@ -87,8 +98,6 @@
 							icon: 'error',
 							confirmButtonText: 'Tamam'
 						});
-
-						$(`#${id}`).remove();
 					}
 				});
 			}

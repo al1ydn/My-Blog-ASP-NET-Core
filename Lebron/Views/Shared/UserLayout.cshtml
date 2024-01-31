@@ -32,8 +32,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 	<header>
 		<div class="top-bar_sub_w3layouts container-fluid">
 			<div class="row">
-				<div class="col-md-4 logo text-left">
-					<a class="navbar-brand" href="/CoreBlogTema/web/index.html">
+				<div class="col-md-1"></div>
+				<div class="col-md-6 logo text-left">
+					<a class="navbar-brand" asp-action="Index" asp-controller="Blog">
 						<img src="/writer/assets/images/new-logo/logo-no-background.svg" alt="logo" style="max-width: 120px" />
 						@* <i class="fab fa-linode"></i> LEBRON *@
 					</a>
@@ -41,19 +42,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 				@await Html.PartialAsync("Partial/Hosgeldiniz")
 
-				@await Html.PartialAsync("Partial/SocialMedia")
+				@* @await Html.PartialAsync("Partial/SocialMedia") *@
 			</div>
 		</div>
-		@await Html.PartialAsync("Partial/HeaderButtons")
+		@* @await Html.PartialAsync("Partial/HeaderButtons") *@
 	</header>
 	<!--//header-->
 	<!--/banner-->
-	<ol class="breadcrumb">
+	@* <ol class="breadcrumb">
 		<li class="breadcrumb-item">
 			<a href="/CoreBlogTema/web/index.html">Home</a>
 		</li>
 		<li class="breadcrumb-item active">Blog3</li>
-	</ol>
+	</ol> *@
 	<!--//banner-->
 	@RenderBody()
 

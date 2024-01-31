@@ -61,7 +61,7 @@
 				<div class="right-blog-info text-left">
 					@await Html.PartialAsync("~/Views/Subscriber/Add.cshtml")
 					@await Component.InvokeAsync("categoryRead")
-					@await Component.InvokeAsync("blogReadByWriterFilter", new{id = 1})
+					@await Component.InvokeAsync("blogReadByAppUserFilter", new{id = 10})
 					<div class="single-gd my-5 tech-btm">
 						<h4>Our Progress</h4>
 						<div class="progress">
